@@ -1,0 +1,725 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="pt" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Configuração da VPN do DI para acesso remoto à rede do laboratório - Mostra Ufes em Computação e Tecnologia</title>
+<meta name="description" content="O objetivo desta documentação é descrever o passo a passo para configurar a VPN para acesso remoto aos servidores do laboratório dentro da rede do DI da UFES.">
+
+
+  <meta name="author" content="Andre Pacheco">
+  
+  <meta property="article:author" content="Andre Pacheco">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Mostra Ufes em Computação e Tecnologia">
+<meta property="og:title" content="Configuração da VPN do DI para acesso remoto à rede do laboratório">
+<meta property="og:url" content="http://0.0.0.0:4000/wiki/como-configurar-vpn/">
+
+
+  <meta property="og:description" content="O objetivo desta documentação é descrever o passo a passo para configurar a VPN para acesso remoto aos servidores do laboratório dentro da rede do DI da UFES.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-11-14T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/wiki/como-configurar-vpn/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Mostra Ufes em Computação e Tecnologia",
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Mostra Ufes em Computação e Tecnologia Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="assets/imgs/favicon.png" type="image/x-icon" />
+<link rel="icon" href="/assets/imgs/favicon.png" type="image/x-icon">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Oswald:wght@200;300;400;500;600;700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Pular para navegação primária</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Pular para conteúdo</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Pular para rodapé</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/imgs/logo.png" alt="Mostra Ufes em Computação e Tecnologia"></a>
+        
+        <a class="site-title" href="/">
+          <!-- Mostra Ufes em Computação e Tecnologia -->
+          <!--  -->
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/sobre/">Sobre</a>
+            </li><li class="masthead__menu-item">
+              <a href="/midia/">Mídia</a>
+            </li><li class="masthead__menu-item">
+              <a href="/eventos/">Eventos</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Chavear busca</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Chavear menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://0.0.0.0:4000/">
+        <img src="/assets/imgs/equipe/professores/andre_pacheco.png" alt="Andre Pacheco" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://0.0.0.0:4000/" itemprop="url">Andre Pacheco</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Professor do departamento de Informática da UFES e membro do Programa de Pós-Graduação em Informática (PPGI). É um dos fundadores do laboratório e trabalha principalmente com aprendizado de máquina aplicado em problemas de saúde.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Acompanhe no</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Vitória - ES</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:pacheco.comp@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://pachecoandre.com.br" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/paaatcha" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/paaatcha" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/paaatcha" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Configuração da VPN do DI para acesso remoto à rede do laboratório">
+    <meta itemprop="description" content="O objetivo desta documentação é descrever o passo a passo para configurar a VPN para acesso remoto aos servidores do laboratório dentro da rede do DI da UFES.">
+    <meta itemprop="datePublished" content="2023-11-14T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://0.0.0.0:4000/wiki/como-configurar-vpn/" class="u-url" itemprop="url">Configuração da VPN do DI para acesso remoto à rede do laboratório
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minuto(s) de leitura
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Nesta página</h4></header>
+              <ul class="toc__menu"><li><a href="#acesso-à-vpn-do-di-ufes">Acesso à VPN do DI-UFES</a><ul><li><a href="#utilização-da-vpn">Utilização da VPN</a></li><li><a href="#uso-de-ferramentas-adicionais">Uso de Ferramentas Adicionais</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>O objetivo desta documentação é descrever o passo a passo para configurar a VPN para acesso remoto aos servidores do laboratório dentro da rede do DI da UFES.</p>
+
+<h2 id="acesso-à-vpn-do-di-ufes">Acesso à VPN do DI-UFES</h2>
+
+<p>Para acessar a VPN do DI-UFES, siga os seguintes passos:</p>
+
+<ol>
+  <li><strong>Solicitar arquivo de configuração da VPN</strong>
+    <ul>
+      <li>Envie um email para Ebenézer (analista de TI do LAR) no seguinte endereço: <code class="language-plaintext highlighter-rouge">ensilva@inf.ufes.br</code></li>
+      <li>Título do e-mail: Acesso a VPN para uso dos servidores do laboratório</li>
+      <li>No corpo do e-mail solicite o arquivo de configuração da OpenVPN. Você precisa fornecer seu usuário do PPPoE</li>
+      <li>Você receberá um arquivo de configuração por e-mail. Salve-o em um local de fácil acesso.</li>
+    </ul>
+  </li>
+  <li><strong>Instalação da VPN</strong>
+    <ul>
+      <li>Se você utiliza o Windows :roll_eyes: é necessário fazer o download do <a href="https://swupdate.openvpn.net/beta-downloads/connect/openvpn-connect-3.3.7.2979_signed.msi">OpenVPN Connect 3.3.7</a>. Siga as intruções de instalação.</li>
+      <li>Se você utiliza o Linux :hugs: (Ubuntu ou Mint), não é necessário instalar nada. O OpenVPN já vem instalado por padrão.</li>
+    </ul>
+  </li>
+  <li><strong>Configuração da VPN no Linux</strong>
+    <ul>
+      <li>Vá até a configurações do sistema e abra o menu de Redes (<em>Networking</em>)</li>
+      <li>Na sequência, procure o botão de adicionar uma configuração (pode ser representado pelo caractere +)</li>
+      <li>Depois clique em Importar de Arquivo (<em>Import from File</em>) para adicionarmos a configuração</li>
+      <li>
+        <p>A imagem a seguir ilustra o processo no Linux Mint:
+<img src="/assets/imgs/wiki/como-configurar-vpn/config_vpn_1.png" alt="config-1" /></p>
+      </li>
+      <li>Agora vai abrir uma outra janela e você deve selecionar o arquivo de configuração que você recebeu por e-mail</li>
+      <li>Feito isso, vai abrir uma janela com as configurações da VPN. Você deve preencher o nome da VPN (nome de sua preferência) e o campo de usuário e senha com os dados do PPPoE:
+<img src="/assets/imgs/wiki/como-configurar-vpn/config_vpn_2.png" alt="config-2" /></li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="utilização-da-vpn">Utilização da VPN</h3>
+
+<p>Uma vez configurada, a VPN vai aparecer como uma opção de rede disponível para conexão. Para conectar, basta clicar no botão de ligar. A imagem a seguir ilustra o processo no Linux Mint:</p>
+
+<p><img src="/assets/imgs/wiki/como-configurar-vpn/config_vpn_3.png" alt="config-3" /></p>
+
+<p>Uma vez conectado, você deve ser capaz de <em>pingar</em> qualquer IP disponível na rede. Por exemplo, se você quiser conectar no IP <code class="language-plaintext highlighter-rouge">10.8.9.10</code> basta fazer:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   ping 10.8.9.10
+</code></pre></div></div>
+
+<p>Para fazer um acesso <code class="language-plaintext highlighter-rouge">ssh</code> a um computador da rede (obviamente o computador tem que ter servidor <code class="language-plaintext highlighter-rouge">ssh</code>), basta fazer:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   ssh usuario@ip
+</code></pre></div></div>
+
+<p>Sendo que <code class="language-plaintext highlighter-rouge">ip</code> é i IP da máquina que você deseja acessar e <code class="language-plaintext highlighter-rouge">usuario</code> é o seu <strong>usuário da máquina</strong> (não do PPPoE).</p>
+
+<h3 id="uso-de-ferramentas-adicionais">Uso de Ferramentas Adicionais</h3>
+
+<ul>
+  <li>VSCode
+    <ul>
+      <li>Para um acesso remoto mais confortável, você pode utilizar o VSCode com a extensão “Remote - SSH”.</li>
+    </ul>
+  </li>
+  <li>JupyterLab
+    <ul>
+      <li>Execute o seguinte comando para acessar seus notebooks JupyterLab:
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jupyter-lab --ip 0.0.0.0
+</code></pre></div>        </div>
+      </li>
+      <li>Acesse o JupyterLab através do navegador, utilizando o IP do computador remoto na porta 8888.</li>
+    </ul>
+  </li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categorias: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#wiki" class="page__taxonomy-item p-category" rel="tag">Wiki</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Atualizado em:</strong> <time class="dt-published" datetime="2023-11-14T00:00:00+00:00">November 14, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Compartilhe</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Configura%C3%A7%C3%A3o+da+VPN+do+DI+para+acesso+remoto+%C3%A0+rede+do+laborat%C3%B3rio%20http%3A%2F%2F0.0.0.0%3A4000%2Fwiki%2Fcomo-configurar-vpn%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Compartilhe Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F0.0.0.0%3A4000%2Fwiki%2Fcomo-configurar-vpn%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Compartilhe Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2F0.0.0.0%3A4000%2Fwiki%2Fcomo-configurar-vpn%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Compartilhe LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/noticia/padtech-no-conexaoes-2023/" class="pagination--pager" title="Padtech participa da Feira de inovação Conexão Ciência ES
+">Anterior</a>
+    
+    
+      <a href="/wiki/como-criar-e-usar-modelos-com-onnx/" class="pagination--pager" title="Como converter e usar o seu modelo com ONNX
+">Próxima</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">Talvez você também goste</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/imgs/posts/premio-conexao-inova/pitch.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/noticia/premio-conexao-inova/" rel="permalink">Projeto do LIFE recebe prêmio de inovação
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minuto(s) de leitura
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">O software de triagem de lesões de pele desenvolvido pelo Padtech/PAD-UFES dentro do Laboratório de Inteligência em Saúde (LIFE) da UFES venceu o 5º Prêmio d...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://www.fabriziomusacchio.com/assets/images/posts/miniconda_thumb.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/wiki/usando-conda-multiusuario/" rel="permalink">Utilizando o Miniconda para multiusuarios
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minuto(s) de leitura
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Quando estamos usando um servidor compartilhado, é comum que tenhamos que instalar pacotes e ambientes virtuais para diferentes usuários. O Miniconda é uma ó...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/220px-Tux.svg.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/wiki/como-adicionar-usuario-linux/" rel="permalink">Como criar um usuário no linux via terminal
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minuto(s) de leitura
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">De maneira simples, para criar um usuário no linux via terminal, basta utilizar o comando useradd. Porém, tem alguns passos extras de configuração que são in...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/imgs/semana-saude/banner-semana-info.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/noticia/padtech-conexao-ciencia-2/" rel="permalink">Apresentação do Padtech na segunda edição do Conexão Ciência
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minuto(s) de leitura
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">O projeto Padtech marcou presença na segunda edição do evento Conexão Ciência: Semana Estadual de Ciência, Tecnologia e Inovação, realizado nos dias 25 e 26 ...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Digite seu termo de busca...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Digite seu termo de busca..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<div style="float: right">
+    <a style="margin-right: 15px;" href="/tags"><i class="fas fa-tag fa-sm"></i> Tags </a>
+    
+    
+    <a href="/archive"><i class="fas fa-calendar-alt fa-sm index_color" aria-hidden="true"></i> Arquivo </a>
+    
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Acompanhe no:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/life-ufes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://www.instagram.com/computacao.ct.ufes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Mostra Ufes em Computação e Tecnologia. Desenvolvido com <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

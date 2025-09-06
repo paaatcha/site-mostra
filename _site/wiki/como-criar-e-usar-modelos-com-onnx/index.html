@@ -1,0 +1,724 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="pt" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Como converter e usar o seu modelo com ONNX - Mostra Ufes em Computação e Tecnologia</title>
+<meta name="description" content="ONNX é um formato de arquivo de modelo de aprendizado de máquina intercambiável. O objetivo do ONNX é permitir que os desenvolvedores de IA usem os modelos com o framework de sua escolha (PyTorch, TensorFlow, etc) e seja capaz de usar o modelo em qualquer lugar (na nuvem, no dispositivo móvel, etc) de maneira agnóstica ao framework. Em outras palavras, o ONNX é um formato de arquivo que permite que você exporte o seu modelo de aprendizado de máquina de um framework para outro. Obviamente, a principal intenção de usar ONNX é para colocar modelos em produção. Para mais informações, acesse a documentação oficial.">
+
+
+  <meta name="author" content="Andre Pacheco">
+  
+  <meta property="article:author" content="Andre Pacheco">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Mostra Ufes em Computação e Tecnologia">
+<meta property="og:title" content="Como converter e usar o seu modelo com ONNX">
+<meta property="og:url" content="http://0.0.0.0:4000/wiki/como-criar-e-usar-modelos-com-onnx/">
+
+
+  <meta property="og:description" content="ONNX é um formato de arquivo de modelo de aprendizado de máquina intercambiável. O objetivo do ONNX é permitir que os desenvolvedores de IA usem os modelos com o framework de sua escolha (PyTorch, TensorFlow, etc) e seja capaz de usar o modelo em qualquer lugar (na nuvem, no dispositivo móvel, etc) de maneira agnóstica ao framework. Em outras palavras, o ONNX é um formato de arquivo que permite que você exporte o seu modelo de aprendizado de máquina de um framework para outro. Obviamente, a principal intenção de usar ONNX é para colocar modelos em produção. Para mais informações, acesse a documentação oficial.">
+
+
+
+  <meta property="og:image" content="https://onnx.ai/images/ONNX-Logo.svg">
+
+
+
+
+
+  <meta property="article:published_time" content="2024-01-31T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/wiki/como-criar-e-usar-modelos-com-onnx/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Mostra Ufes em Computação e Tecnologia",
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Mostra Ufes em Computação e Tecnologia Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="assets/imgs/favicon.png" type="image/x-icon" />
+<link rel="icon" href="/assets/imgs/favicon.png" type="image/x-icon">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Oswald:wght@200;300;400;500;600;700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Pular para navegação primária</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Pular para conteúdo</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Pular para rodapé</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/imgs/logo.png" alt="Mostra Ufes em Computação e Tecnologia"></a>
+        
+        <a class="site-title" href="/">
+          <!-- Mostra Ufes em Computação e Tecnologia -->
+          <!--  -->
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/sobre/">Sobre</a>
+            </li><li class="masthead__menu-item">
+              <a href="/midia/">Mídia</a>
+            </li><li class="masthead__menu-item">
+              <a href="/eventos/">Eventos</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Chavear busca</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Chavear menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://0.0.0.0:4000/">
+        <img src="/assets/imgs/equipe/professores/andre_pacheco.png" alt="Andre Pacheco" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://0.0.0.0:4000/" itemprop="url">Andre Pacheco</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Professor do departamento de Informática da UFES e membro do Programa de Pós-Graduação em Informática (PPGI). É um dos fundadores do laboratório e trabalha principalmente com aprendizado de máquina aplicado em problemas de saúde.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Acompanhe no</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Vitória - ES</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:pacheco.comp@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://pachecoandre.com.br" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/paaatcha" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/paaatcha" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/paaatcha" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Como converter e usar o seu modelo com ONNX">
+    <meta itemprop="description" content="ONNX é um formato de arquivo de modelo de aprendizado de máquina intercambiável. O objetivo do ONNX é permitir que os desenvolvedores de IA usem os modelos com o framework de sua escolha (PyTorch, TensorFlow, etc) e seja capaz de usar o modelo em qualquer lugar (na nuvem, no dispositivo móvel, etc) de maneira agnóstica ao framework. Em outras palavras, o ONNX é um formato de arquivo que permite que você exporte o seu modelo de aprendizado de máquina de um framework para outro. Obviamente, a principal intenção de usar ONNX é para colocar modelos em produção. Para mais informações, acesse a documentação oficial.">
+    <meta itemprop="datePublished" content="2024-01-31T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://0.0.0.0:4000/wiki/como-criar-e-usar-modelos-com-onnx/" class="u-url" itemprop="url">Como converter e usar o seu modelo com ONNX
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minuto(s) de leitura
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p>ONNX é um formato de arquivo de modelo de aprendizado de máquina intercambiável. O objetivo do ONNX é permitir que os desenvolvedores de IA usem os modelos com o framework de sua escolha (PyTorch, TensorFlow, etc) e seja capaz de usar o modelo em qualquer lugar (na nuvem, no dispositivo móvel, etc) de maneira agnóstica ao framework. Em outras palavras, o ONNX é um formato de arquivo que permite que você exporte o seu modelo de aprendizado de máquina de um framework para outro. Obviamente, a principal intenção de usar ONNX é para colocar modelos em produção. Para mais informações, acesse a <a href="https://onnx.ai/">documentação oficial</a>.</p>
+
+<p>O intuito deste tutorial é mostrar como converter um modelo usando Pytorch para o formato ONNX e como usar esse modelo convertido em um código Python.</p>
+
+<h2 id="instalação">Instalação</h2>
+
+<p>Para instalar o ONNX, você pode usar o gerenciador de pacotes <code class="language-plaintext highlighter-rouge">pip</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install onnx
+</code></pre></div></div>
+
+<p>Também é necessário instalar o pacote <code class="language-plaintext highlighter-rouge">onnxruntime</code> para poder usar o modelo convertido:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install onnxruntime
+</code></pre></div></div>
+
+<h2 id="conversão-do-modelo">Conversão do modelo</h2>
+
+<p>Antes de começar, não custa mencionar que, primeiramente, você precisa ter o seu modelo carregado em memória. Você pode fazer isso usando os métodos padrões do Pytorch, seja construindo o modelo do zero ou carregando um <code class="language-plaintext highlighter-rouge">checkpoint</code>. Aqui vamos apenas assumir que existe um modelo carregado em memória e que ele está sendo referenciado pela variável <code class="language-plaintext highlighter-rouge">model</code>.</p>
+
+<p>Para converter o modelo, você precisa usar a função <code class="language-plaintext highlighter-rouge">torch.onnx.export</code> da seguinte forma:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">torch</span><span class="p">.</span><span class="n">onnx</span><span class="p">.</span><span class="nf">export</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>
+                    <span class="n">input_data</span><span class="p">,</span>
+                    <span class="sh">"</span><span class="s">/home/models/my_model.onnx</span><span class="sh">"</span><span class="p">,</span>
+                    <span class="n">input_names</span><span class="o">=</span><span class="n">input_names</span><span class="p">,</span>
+                    <span class="n">output_names</span><span class="o">=</span><span class="n">output_names</span><span class="p">,</span>
+                    <span class="n">dynamic_axes</span><span class="o">=</span><span class="n">dynamic_axes</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>A seguir é apresentado uma breve descrição dos parâmetros dessa função:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">model</code> é o modelo carregado em memória</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">input_data</code> é um exemplo completo de dado de entrada para o modelo. Esse dado deve ser exatamente como o esperado para pelo o modelo. Por exemplo, se o modelo tem mais de uma entrada, por exemplo, uma imagem e um texto, <code class="language-plaintext highlighter-rouge">input_data</code> deve ser uma tupla com esses dois dados. Esse ponto é muito importante, pois o ONNX não consegue inferir o formato de entrada do modelo. Basicamente, ele vai realizar um teste de sanidade para ver se o modelo consegue processar o dado de entrada. Se o modelo não conseguir processar o dado de entrada, o ONNX vai retornar um erro. Sendo assim, você precisa carregar os dados exatamente igual você faz com o modelo original, respeitando ordem, formato e pré-processamento. Outro ponto interessante é que você pode inserir dados <em>falsos</em>. No exemplo da imagem e do texto, supondo que o modelo use uma imagem de <code class="language-plaintext highlighter-rouge">224x224</code> e um texto de 100 palavras, você pode criar um tensor de zeros com essas dimensões e passar para o <code class="language-plaintext highlighter-rouge">input_data</code>. O ONNX vai aceitar esse dado e vai converter o modelo sem problemas. O que precisa ser respeitado é o tipo dos dados. Se a imagem for avaliada no modelo como um tensor de <code class="language-plaintext highlighter-rouge">float32</code>, você precisa passar um tensor de <code class="language-plaintext highlighter-rouge">float32</code> no <code class="language-plaintext highlighter-rouge">input_data</code>. Exemplo de <code class="language-plaintext highlighter-rouge">input_data</code>:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">input_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">),</span> <span class="n">torch</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Observe que, como estamos usando Pytorch, a primeira dimensão representa o <em>batch_size</em>, que neste caso deve ser 1.</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">/home/models/my_model.onnx</code> é o caminho completo para salvar o modelo convertido. O nome do arquivo pode ser qualquer um, normalmente é usado a extensão <code class="language-plaintext highlighter-rouge">.onnx</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">input_names</code> é uma lista com os nomes das entradas do modelo. Por exemplo, se o modelo tem duas entradas, uma imagem e um texto, você pode passar uma lista com os nomes <code class="language-plaintext highlighter-rouge">["image", "text"]</code>. Esses nomes são importantes, pois eles serão usados para referenciar as entradas do modelo quando você for usar o modelo convertido. Se você não passar esse parâmetro, o ONNX vai usar os nomes padrões <code class="language-plaintext highlighter-rouge">input_0</code>, <code class="language-plaintext highlighter-rouge">input_1</code>, etc.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">output_names</code> mesma ideia do parâmetro <code class="language-plaintext highlighter-rouge">input_names</code>, porém para as saídas do modelo. Se houver mais de uma saída no modelo, você pode passar uma lista com os nomes <code class="language-plaintext highlighter-rouge">["predicao", "prob"]</code>. Se houver apenas uma, basta passar apenas o nome ou uma lista com apenas um item.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">dynamic_axes</code> é um dicionário com as dimensões que você quer que sejam dinâmicas, normalmente usado para o <em>batch_size</em>. Usando o exemplo do modelo com imagem e texto anterior, você pode passar um dicionário com as dimensões que você quer que sejam dinâmicas, por exemplo, <code class="language-plaintext highlighter-rouge">{"image": {0: "batch_size"}, "text": {0: "batch_size"}}</code>. Isso significa que a primeira dimensão da imagem e do texto serão dinâmicas, ou seja, você pode passar qualquer valor para essa dimensão. Se você não passar esse parâmetro, o ONNX vai assumir que todas as dimensões são dinâmicas. Isso é útil para fazer avaliação em batch.</p>
+  </li>
+</ul>
+
+<p>Se tudo deu certo, ao executar essa função o ONNX vai salvar o modelo convertido no caminho especificado. Agora você pode usar esse modelo convertido em qualquer lugar, seja em um servidor ou em um dispositivo móvel.</p>
+
+<h2 id="uso-do-modelo-convertido">Uso do modelo convertido</h2>
+
+<p>Para usar o modelo convertido, você precisa carregá-lo em memória usando a função <code class="language-plaintext highlighter-rouge">onnxruntime.InferenceSession</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MODEL</span> <span class="o">=</span> <span class="n">onnxruntime</span><span class="p">.</span><span class="nc">InferenceSession</span><span class="p">(</span><span class="sh">"</span><span class="s">/home/models/my_model.onnx</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Agora você pode usar o modelo convertido da mesma forma que você usaria o modelo original. Porém, o ONNX não aceita tensores do Pytorch (se aceitasse não faria sentido ser agnóstico ao framework). É necessário usar os dados com <code class="language-plaintext highlighter-rouge">NumPy</code>. Logo, basta carregar os dados de entrada com <code class="language-plaintext highlighter-rouge">NumPy</code> e passar para o modelo carregado da seguinte forma:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">MODEL</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="p">{</span><span class="sh">"</span><span class="s">image</span><span class="sh">"</span><span class="p">:</span> <span class="n">image_np</span><span class="p">,</span> <span class="sh">"</span><span class="s">text</span><span class="sh">"</span><span class="p">:</span> <span class="n">text_np</span><span class="p">})</span>
+</code></pre></div></div>
+
+<p>Observe que o método <code class="language-plaintext highlighter-rouge">run</code> recebe dois parâmetros: o primeiro é uma lista com os nomes das saídas que você quer obter do modelo. Se você quiser obter todas as saídas, basta passar <code class="language-plaintext highlighter-rouge">None</code>. O segundo parâmetro é um dicionário com os dados de entrada. Observe que os nomes das entradas devem ser os mesmos que você passou quando converteu o modelo. O retorno desse método é uma lista com os dados de saída do modelo. Se você passou apenas uma saída, o retorno será uma lista com apenas um item. Se você passou mais de uma saída, o retorno será uma lista com os dados de saída na mesma ordem que você passou no parâmetro <code class="language-plaintext highlighter-rouge">output_names</code> quando converteu o modelo.</p>
+
+<p>É importante verificar o formato e tipo dos dados a ser informado. Além disso, você pode realizar a inferência em <em>batch</em> ou individual. Obviamente isso vai alterar a quantidade de saída do modelo.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categorias: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#wiki" class="page__taxonomy-item p-category" rel="tag">Wiki</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Atualizado em:</strong> <time class="dt-published" datetime="2024-01-31T00:00:00+00:00">January 31, 2024</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Compartilhe</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Como+converter+e+usar+o+seu+modelo+com+ONNX%20http%3A%2F%2F0.0.0.0%3A4000%2Fwiki%2Fcomo-criar-e-usar-modelos-com-onnx%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Compartilhe Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F0.0.0.0%3A4000%2Fwiki%2Fcomo-criar-e-usar-modelos-com-onnx%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Compartilhe Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2F0.0.0.0%3A4000%2Fwiki%2Fcomo-criar-e-usar-modelos-com-onnx%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Compartilhe LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/wiki/como-configurar-vpn/" class="pagination--pager" title="Configuração da VPN do DI para acesso remoto à rede do laboratório
+">Anterior</a>
+    
+    
+      <a href="/noticia/seminario-marco-zero/" class="pagination--pager" title="Seminário avalia projetos de pesquisa em saúde e alinha iniciativas com políticas públicas
+">Próxima</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">Talvez você também goste</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/imgs/posts/premio-conexao-inova/pitch.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/noticia/premio-conexao-inova/" rel="permalink">Projeto do LIFE recebe prêmio de inovação
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minuto(s) de leitura
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">O software de triagem de lesões de pele desenvolvido pelo Padtech/PAD-UFES dentro do Laboratório de Inteligência em Saúde (LIFE) da UFES venceu o 5º Prêmio d...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://www.fabriziomusacchio.com/assets/images/posts/miniconda_thumb.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/wiki/usando-conda-multiusuario/" rel="permalink">Utilizando o Miniconda para multiusuarios
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minuto(s) de leitura
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Quando estamos usando um servidor compartilhado, é comum que tenhamos que instalar pacotes e ambientes virtuais para diferentes usuários. O Miniconda é uma ó...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/220px-Tux.svg.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/wiki/como-adicionar-usuario-linux/" rel="permalink">Como criar um usuário no linux via terminal
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minuto(s) de leitura
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">De maneira simples, para criar um usuário no linux via terminal, basta utilizar o comando useradd. Porém, tem alguns passos extras de configuração que são in...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/imgs/semana-saude/banner-semana-info.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/noticia/padtech-conexao-ciencia-2/" rel="permalink">Apresentação do Padtech na segunda edição do Conexão Ciência
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minuto(s) de leitura
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">O projeto Padtech marcou presença na segunda edição do evento Conexão Ciência: Semana Estadual de Ciência, Tecnologia e Inovação, realizado nos dias 25 e 26 ...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Digite seu termo de busca...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Digite seu termo de busca..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<div style="float: right">
+    <a style="margin-right: 15px;" href="/tags"><i class="fas fa-tag fa-sm"></i> Tags </a>
+    
+    
+    <a href="/archive"><i class="fas fa-calendar-alt fa-sm index_color" aria-hidden="true"></i> Arquivo </a>
+    
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Acompanhe no:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/life-ufes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://www.instagram.com/computacao.ct.ufes" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Mostra Ufes em Computação e Tecnologia. Desenvolvido com <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

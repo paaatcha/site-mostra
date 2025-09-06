@@ -1,0 +1,27 @@
+#############
+# Atributos:
+#############
+#   nome: "Projeto Integrado de Computação II"
+#   curso: "Engenharia de Computação"
+#   highlight: "Integração de Hardware e Software"
+#   data: "28/08/2025"
+#   hora: "10h as 12h"
+#   local: "CT-XII - Sala de Extensão"
+#   linkprojetos: "/projetos"
+
+disciplinas:
+  - nome: "Projeto Integrado de Computação II"
+    curso: "Engenharia de Computação"
+    highlight: "Integração de Hardware e Software"
+    data: "28/08/2025"
+    hora: "10h as 12h"
+    local: "CT-XII - Sala de Extensão"
+    linkprojetos: "/projetos"
+
+  - nome: "Projeto Integrado I"
+    curso: "Ciência da Computação"
+    highlight: "Sistemas Web, Apps, Games"
+    data: "28/08/2025"
+    hora: "10h as 12h"
+    local: "CT-XII - Sala de Extensão"
+    linkprojetos: "/projetos2"
