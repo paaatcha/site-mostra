@@ -6,12 +6,6 @@ main:
     url: /midia/
   - title: "Eventos"
     url: /eventos/
-  # - title: "Projetos"
-  #   url: /projetos/
-  # - title: "SIS"
-  #   url: /sis/
-  # - title: "Publicações"
-  #   url: /publicacoes/
 
 sidebar-sis:
   - title: "1ª Semana de informática em Saúde"

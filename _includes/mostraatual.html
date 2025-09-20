@@ -1,0 +1,24 @@
+{%- for disc in site.data.mostraatual.disciplinas -%}
+<div class="caixa-evento">
+  <div class="titulo">{{%disc.nome%}} - {{%disc.curso%}}</div>
+  <div class="conteudo">
+    <div class="linha">
+      <span class="icone">📄</span>
+      <span>{{%disc.descricao%}}</span>
+    </div>
+    <div class="linha">
+      <span class="icone">📍</span>
+      <span>{{%disc.local%}}</span>
+    </div>
+    <div class="linha">
+      <span class="icone">🕒</span>
+      <span>{{%disc.data%}} de {{%disc.hora%}}</span>
+    </div>
+  </div>
+  <div class="rodape">
+    <a href="{{%disc.linkprojetos%}}" target="_blank" class="botao"
+      >Veja os projetos</a
+    >
+  </div>
+</div>
+{% endfor %}
