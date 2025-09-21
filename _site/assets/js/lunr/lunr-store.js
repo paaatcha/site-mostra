@@ -15,7 +15,7 @@ var store = [{
         "excerpt":"Um ambiente virtual (ou em inglês virtual environment) é uma ferramenta para gerenciar dependências e isolar projetos em Python. A ideia é que funcione similar a um container Docker, mas de maneira muito mais simples. Se você não sabe nada sobre o assunto, sugiro que dê uma olhada neste vídeo...","categories": ["Wiki"],
         "tags": [],
         "url": "/wiki/como-criar-ambiente-virtual-python/",
-        "teaser": "/assets/imgs/favicon.png"
+        "teaser": "/assets/imgs/favicon.jpg"
       },{
         "title": "Padtech é aprovado em 1ª lugar no edital Universal de Extensão da FAPES",
         "excerpt":"O Padtech (projeto do laboratório) é selecionado em 1ª lugar (região central oeste) no edital Universal de Extensão da Fundação de Amparo à Pesquisa e Inovação do Espírito Santo (FAPES), que visa fomentar a extensão tecnológica no estado do Espírito Santo. Com este resultado, o Padtech terá acesso ao recurso...","categories": ["Noticia"],
@@ -27,7 +27,7 @@ var store = [{
         "excerpt":"O objetivo deste tutorial é descrever o passo a passo para instalar o Docker em uma máquina com Ubuntu. Se você não sabe nada sobre o Docker, e gostaria de aprender os conceitos básicos, sugiro a leitura deste artigo que escrevi para o meu blog. Preparando o ambiente para instalação...","categories": ["Wiki"],
         "tags": [],
         "url": "/wiki/como-instalar-docker-ubuntu/",
-        "teaser": "/assets/imgs/favicon.png"
+        "teaser": "/assets/imgs/favicon.jpg"
       },{
         "title": "Padtech participa da maior feira de inovação do Espírito Santo",
         "excerpt":"Nos dias 02 a 04 de junho aconteceu o Espírito Santo Innovation Experience (ESx), evento de inovação e tecnologia do estado, promovido pelo Sebrae. O Life foi representado pelo seu projeto Padtech, que marcou presença no estande da Ufes e do governo do estado para apresentar os avanços tecnológicos obtidos...","categories": ["Noticia"],
@@ -51,7 +51,7 @@ var store = [{
         "excerpt":"O objetivo desta documentação é descrever o passo a passo para configurar a VPN para acesso remoto aos servidores do laboratório dentro da rede do DI da UFES. Acesso à VPN do DI-UFES Para acessar a VPN do DI-UFES, siga os seguintes passos: Solicitar arquivo de configuração da VPN Envie...","categories": ["Wiki"],
         "tags": [],
         "url": "/wiki/como-configurar-vpn/",
-        "teaser": "/assets/imgs/favicon.png"
+        "teaser": "/assets/imgs/favicon.jpg"
       },{
         "title": "Como converter e usar o seu modelo com ONNX",
         "excerpt":"ONNX é um formato de arquivo de modelo de aprendizado de máquina intercambiável. O objetivo do ONNX é permitir que os desenvolvedores de IA usem os modelos com o framework de sua escolha (PyTorch, TensorFlow, etc) e seja capaz de usar o modelo em qualquer lugar (na nuvem, no dispositivo...","categories": ["Wiki"],

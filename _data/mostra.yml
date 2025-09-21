@@ -1,0 +1,78 @@
+#############
+# Para incluir uma nova caixa com as informações da mostra basta incluir um item novo como a seguir
+#############
+#   nome: "Projeto Integrado de Computação II"
+#   curso: "Engenharia de Computação"
+#   descricao: "Integração de Hardware e Software"
+#   data: "28/08/2025"
+#   hora: "10h as 12h"
+#   local: "CT-XII - Sala de Extensão"
+#   linkprojetos: "/projetos"
+#############
+# Importante: se for online sem horário, basta fazer:
+# local: online
+# E não incluir a hora
+#############
+
+##############################################################
+# MOSTRA 2025-1
+##############################################################
+2025-1:
+  - nome: "Projeto Integrado de Computação II"
+    curso: "Engenharia de Computação"
+    descricao: "Integração de Hardware e Software"
+    data: "28/08/2025"
+    hora: "10h às 12h"
+    local: "CT-XII - Sala de Extensão"
+    linkprojetos: "/PIC2-EC-20251"
+
+  - nome: "Projeto Integrado I"
+    curso: "Ciência da Computação"
+    descricao: "Sistemas Web, Apps, Games"
+    data: "28/08/2025"
+    hora: "10h às 12h"
+    local: "CT-XII - Sala de Extensão"
+    linkprojetos: "/PI-CC-20251"
+
+  - nome: "Introdução à Engenharia de Computação"
+    curso: "Engenharia de Computação"
+    descricao: "Tecnologia e Impacto Social"
+    data: "21/08/2024"
+    hora: "11h às 13h"
+    local: "CT-XIII - Auditório"
+    linkprojetos: "/IEC-20251"
+
+  - nome: "Introdução à Ciência da Computação"
+    curso: "Ciência da Computação"
+    descricao: "Tecnologia e Impacto Social"
+    data: "28/08/2024"
+    hora: "11h às 13h"
+    local: "Online"
+    linkprojetos: "/ICC-20251"
+
+##############################################################
+# MOSTRA 2024-2
+##############################################################
+2024-2:
+  - nome: "Introdução à Engenharia de Computação & Introdução à Engenharia Elétrica"
+    curso: "Engenharia de Computação & Engenharia Elétrica"
+    descricao: "Tecnologia e Impacto Social"
+    data: "25/07/2024"
+    Hora: "11h30 às 13:00h"
+    local: "CT-I - Auditório"
+    linkprojetos: "/IEC-20242"
+
+  - nome: "Projeto Integrado de Computação II"
+    curso: "Engenharia de Computação"
+    descricao: "Integração de Hardware e Software"
+    data: "25/07/2024"
+    hora: "10h às 12h"
+    local: "CT-XIII"
+    linkprojetos: "/PIC2-EC-20242"
+  - nome: "Projeto Integrado I"
+    curso: "Ciência da Computação"
+    descricao: "Sistemas Web, Apps, Games"
+    data: "25/07/2024"
+    hora: "10h às 12h"
+    local: "CT-XIII"
+    linkprojetos: "/PI-CC-20242"

@@ -595,7 +595,7 @@ body {
     width: 100%;
     // border: 1px solid #ccc;   
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .caixa-evento .titulo {
@@ -615,7 +615,7 @@ body {
 .caixa-evento .linha {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .caixa-evento .linha:last-child {
@@ -629,7 +629,7 @@ body {
 
 .caixa-evento .rodape {
     // border-top: 1px solid #ccc;
-    padding-top: 10px;
+    padding-top: 5px;
     display: flex;
     justify-content: flex-end;
 }

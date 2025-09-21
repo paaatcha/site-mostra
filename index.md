@@ -3,7 +3,7 @@ layout: splash
 author_profile: false
 header:
   overlay_image: /assets/imgs/capas/capa.png
-  overlay_filter: "0.3"
+  overlay_filter: "0.4"
   actions:
     - label: "Últimas Notícias"
       url: "/noticias/"
@@ -14,7 +14,7 @@ centro:
 
 {% include feature_row id="centro" type="center" %}
 
-# Mostra mais recente
+# Confira os projetos da mostra do semestre mais recente
 
 {% include mostraatual.html %}
 

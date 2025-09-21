@@ -115,6 +115,9 @@
 <loc>http://0.0.0.0:4000/equipe/</loc>
 </url>
 <url>
+<loc>http://0.0.0.0:4000/historico-eventos/</loc>
+</url>
+<url>
 <loc>http://0.0.0.0:4000/</loc>
 </url>
 <url>
@@ -127,9 +130,6 @@
 <loc>http://0.0.0.0:4000/publicacoes/</loc>
 </url>
 <url>
-<loc>http://0.0.0.0:4000/sis/</loc>
-</url>
-<url>
 <loc>http://0.0.0.0:4000/eventos/sis-2024/</loc>
 </url>
 <url>
@@ -137,8 +137,5 @@
 </url>
 <url>
 <loc>http://0.0.0.0:4000/tags/</loc>
-</url>
-<url>
-<loc>http://0.0.0.0:4000/wiki/</loc>
 </url>
 </urlset>

@@ -5,7 +5,7 @@ main:
   - title: "Mídia"
     url: /midia/
   - title: "Eventos"
-    url: /eventos/
+    url: /historico-eventos/
 
 sidebar-sis:
   - title: "1ª Semana de informática em Saúde"

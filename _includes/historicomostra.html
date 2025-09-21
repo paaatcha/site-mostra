@@ -1,10 +1,16 @@
-{% assign semestre = site.data.mostra %}
-{% assign sem = semestre | first %}
+{% assign semestre = site.data.mostra %} {% for sem in semestre %}
 
+<h1 id="{{ sem[0] }}">
+  Semestre: {{ sem[0] }}
+  <a class="header-link" href="#{{ sem[0] }}" title="Permalink"
+    ><span class="sr-only">Permalink</span></a
+  >
+</h1>
 
 <hr />
 
 {% for disc in sem[1] %}
+<div class="caixa-evento">
 <div class="caixa-evento">
   <div class="titulo">{{%disc.nome%}}</div>
   <div class="conteudo">
@@ -36,4 +42,4 @@
 
 {% endfor %}
 <hr />
-
+{% endfor %}
