@@ -24,7 +24,7 @@
     data: "28/08/2025"
     hora: "10h às 12h"
     local: "CT-XII - Sala de Extensão"
-    linkprojetos: "/PIC2-EC-20251"
+    linkprojetos: "/eventos/PIC2-EC-20251/"
 
   - nome: "Projeto Integrado I"
     curso: "Ciência da Computação"

@@ -121,7 +121,7 @@ footer:
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/life-ufes"
+      # url: "https://github.com/life-ufes"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://www.instagram.com/computacao.ct.ufes"
