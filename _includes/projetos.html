@@ -1,115 +1,19 @@
 <div class="proj-grid">
-  <!-- Card 1 -->
+  {% for proj in include.fileyml.projetos %}
   <div class="proj-card">
-    <iframe
-      src="https://www.youtube.com/embed/VIDEO_ID1"
-      allowfullscreen
-    ></iframe>
+    <iframe src="{{proj.iframe}}" allowfullscreen></iframe>
     <div class="proj-card-content">
-      <h2>LaserCraft - Mostra</h2>
-      <div class="proj-card-autores">
-        Afonso Salvador, Henrique Santos, João Paulo Cleavelares, Kevin Carvalho
-      </div>
-      <div class="proj-card-desc">
-        CNC, Laser Engraver para Impressão de Imagens em Madeira / Papel.
-      </div>
+      <h2>{{proj.nome}}</h2>
+      <div class="proj-card-autores">{{proj.autores}}</div>
+      <div class="proj-card-desc">{{proj.descricao}}</div>
+      {% if proj.github %}
       <div class="proj-card-link">
-        <a href="https://github.com/seuprojeto1" target="_blank">
+        <a href="{{proj.github}}" target="_blank">
           <i class="fab fa-fw fa-github"></i> GitHub
         </a>
       </div>
+      {% endif %}
     </div>
   </div>
-
-  <!-- Card 2 -->
-  <div class="proj-card">
-    <iframe
-      src="https://www.youtube.com/embed/_3zcd5-jq9o?si=DRJN1moRhDwNLfQP"
-      allowfullscreen
-    ></iframe>
-    <div class="proj-card-content">
-      <h2>Rastreador Solar - Mostra</h2>
-      <div class="proj-card-autores">
-        ANDRÉ ALTOÉ, YURI SANCHEZ, LUIZ SABADINI, OTÁVIO SOUZA
-      </div>
-      <div class="proj-card-desc">
-        Rastreador de Luz Solar, adaptado em Painéis Solares móveis.
-      </div>
-      <div class="proj-card-link">
-        🔗 <a href="https://github.com/seuprojeto2" target="_blank">GitHub</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Card 3 -->
-  <div class="proj-card">
-    <iframe
-      src="https://www.youtube.com/embed/mCGIigp-dq4"
-      allowfullscreen
-    ></iframe>
-    <div class="proj-card-content">
-      <h2>Sensor Biomecânico com VR - Mostra</h2>
-      <div class="proj-card-autores">
-        CAIO FIOROTTI, MATHEUS SCHREIBER, VINICIUS DE AMORIM
-      </div>
-      <div class="proj-card-desc">
-        Sensor Biomecânico com apoio de Realidade Virtual para reabilitação de
-        pacientes com dificuldades motoras. Sensor Biomecânico com apoio de
-        Realidade Virtual para reabilitação de pacientes com dificuldades
-        motoras. Sensor Biomecânico com apoio de Realidade Virtual para
-        reabilitação de pacientes com dificuldades motoras.
-      </div>
-      <div class="proj-card-link">
-        🔗 <a href="https://github.com/seuprojeto3" target="_blank">GitHub</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Card 3 -->
-  <div class="proj-card">
-    <iframe
-      src="https://www.youtube.com/embed/mCGIigp-dq4"
-      allowfullscreen
-    ></iframe>
-    <div class="proj-card-content">
-      <h2>Sensor Biomecânico com VR - Mostra</h2>
-      <div class="proj-card-autores">
-        CAIO FIOROTTI, MATHEUS SCHREIBER, VINICIUS DE AMORIM
-      </div>
-      <div class="proj-card-desc">
-        Sensor Biomecânico com apoio de Realidade Virtual para reabilitação de
-        pacientes com dificuldades motoras. Sensor Biomecânico com apoio de
-        Realidade Virtual para reabilitação de pacientes com dificuldades
-        motoras. Sensor Biomecânico com apoio de Realidade Virtual para
-        reabilitação de pacientes com dificuldades motoras.
-      </div>
-      <div class="proj-card-link">
-        🔗 <a href="https://github.com/seuprojeto3" target="_blank">GitHub</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Card 3 -->
-  <div class="proj-card">
-    <iframe
-      src="https://www.youtube.com/embed/mCGIigp-dq4"
-      allowfullscreen
-    ></iframe>
-    <div class="proj-card-content">
-      <h2>Sensor Biomecânico com VR - Mostra</h2>
-      <div class="proj-card-autores">
-        CAIO FIOROTTI, MATHEUS SCHREIBER, VINICIUS DE AMORIM
-      </div>
-      <div class="proj-card-desc">
-        Sensor Biomecânico com apoio de Realidade Virtual para reabilitação de
-        pacientes com dificuldades motoras. Sensor Biomecânico com apoio de
-        Realidade Virtual para reabilitação de pacientes com dificuldades
-        motoras. Sensor Biomecânico com apoio de Realidade Virtual para
-        reabilitação de pacientes com dificuldades motoras.
-      </div>
-      <div class="proj-card-link">
-        🔗 <a href="https://github.com/seuprojeto3" target="_blank">GitHub</a>
-      </div>
-    </div>
-  </div>
+  {% endfor %}
 </div>
