@@ -1,6 +1,4 @@
-{% assign semestre = site.data.mostra %}
-{% assign sem = semestre | first %}
-
+{% assign semestre = site.data.mostra %} {% assign sem = semestre | first %}
 
 <hr />
 
@@ -9,23 +7,26 @@
   <div class="titulo">{{%disc.nome%}}</div>
   <div class="conteudo">
     <div class="linha">
-        <span class="icone">🎓</span>
-        <span>{{%disc.curso%}}</span>
-      </div>
+      <span class="icone">🎓</span>
+      <span>{{%disc.curso%}}</span>
+    </div>
     <div class="linha">
       <span class="icone">💡</span>
       <span>{{%disc.descricao%}}</span>
     </div>
+    {% if disc.local %}
     <div class="linha">
       <span class="icone">📍</span>
       <span>{{%disc.local%}}</span>
     </div>
+    {% endif %} {% if disc.data %}
     <div class="linha">
       <span class="icone">🗓</span>
       <span
         >{{%disc.data%}} {% if disc.hora %} de {{%disc.hora%}} {% endif %}</span
       >
     </div>
+    {% endif %}
   </div>
   <div class="rodape">
     <a href="{{%disc.linkprojetos%}}" target="_blank" class="botao"
@@ -36,4 +37,3 @@
 
 {% endfor %}
 <hr />
-
