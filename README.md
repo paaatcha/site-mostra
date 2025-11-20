@@ -1,9 +1,9 @@
 
-# Site do Life
+# Site da Mostra Ufes em Computação e Tecnologia
 
-O site do laboratório é construído utilizando o framework Jekyll usando o template Minimal-Mistakes.
+O site da mostra é construído utilizando o framework Jekyll usando o template Minimal-Mistakes.
 
-Para atualizar o conteúdo do site você não precisa conhecer Jekyll a fundo. Sabendo um pouco de Markdown e como funciona o template utilizado, que é descrito na sequência desta documentação, já é suficiente para conseguir atualizar as informações do site.
+Para atualizar o conteúdo do site você **não** precisa conhecer Jekyll a fundo. Sabendo um pouco de Markdown e como funciona o template utilizado, que é descrito na sequência desta documentação, já é suficiente para conseguir atualizar as informações do site.
 
 Todavia, qualquer alteração estrutural do site (por exemplo, criar um layout novo ou alterar paleta de cor) é necessário entender um pouco de desenvolvimento web, bem como aprofundar no Jekyll e no template Minimal Mistakes.
 
@@ -28,167 +28,104 @@ tilizar esse template é que [a documentação dele é muito boa](https://mmista
 
 Todavia, o básico para alterar o site é descrito na próxima seção.
 
-## Funcionamento do site
-Primeiramente, o site está disponível dentro deste repositório. Abrindo o repositório, ou clonando-o, você vai observar uma organização que a esperada pelo Jekyll e pelo Minimal Mistakes. Na sequência, é descrito tudo que você precisa saber para atualizar o site.
 
-### Subindo o ambiente de produção
-Dentro deste repositório você encontra um `Dockerfile` e um `docker-compose`. Tudo que você precisa fazer para subir o ambiente na sua máquina é executar o comando:
-```
-docker compose up -d
-```
-Após isso, o site vai estar disponível em `localhost:4000`. Você pode acessar o site e fazer as alterações que desejar. Toda vez que você alterar algo, o site vai ser atualizado automaticamente. Para encerrar o container, basta executar o comando:
+## Como criar uma nova mostra
 
-```
-docker compose down
-```
+Na `home` do site é apresentada sempre a mostra mais recente. Para criar uma nova mostra, você deve acessar o arquivo `_data/mostra.yml` e inserir uma nova entrada de informações no topo do arquivo, conforme o exemplo abaixo:
 
-### Subindo o ambiente de desenvolvimento
-Similar ao ambiente de produção, você pode subir o ambiente de desenvolvimento para fazer as alterações no site. Para isso, execute o comando:
+```yaml
+##############################################################
+# MOSTRA 2025-1
+##############################################################
+2025-1:
+  - nome: "Projeto Integrado de Computação II"
+    curso: "Engenharia de Computação"
+    descricao: "Integração de Hardware e Software"
+    data: "28/08/2025"
+    hora: "10h às 12h"
+    local: "CT-XII - Sala de Extensão"
+    linkprojetos: "/eventos/PIC2-EC-20251/"
 
-```
-docker compose -f docker-compose-dev.yml up
-```
-Após isso, o site vai estar disponível em `localhost:4000`. Você pode acessar o site e fazer as alterações que desejar. Toda vez que você alterar algo, o site vai ser atualizado automaticamente. Para encerrar o container, basta executar o comando:
-
-
-
-### Configuração do site
-Parte da configuração do site fica disponível dentro do arquivo `_config.yml`, que é um arquivo YAML. Se você não sabe nada sobre YAML, [dê uma lida neste artigo](https://www.treinaweb.com.br/blog/o-que-e-yaml). Porém, nada mais é do que um arquivo estruturado no estilo xml.
-
-Normalmente, não tem muita coisa para alterar neste arquivo no dia-a-dia, mas caso seja necessário, você pode alterar aqui, por exemplo:
-
-- Língua do site através da tag `locale`
-- Título do site através da tag `title`
-- Nome, descrição e URL base através das tags `name`, `description` e `baseurl`, respectivamente
-- Dentre várias outras coisas auto explicativas, como:
-  - Favicon
-  - Redes sociais
-  - Setar comentários
-- Diversas outras configurações mais avançadas de markdown, sass, etc. (você não precisa se preocupar com isso em 99% dos casos)
-
-### Pastas do template
-Existem algumas pastas que são relativas ao template. Elas existem para guardar código para criar layouts, por exemplo. Os códigos dessas pastas você só vai acessar se quiser mudar algo bem estrutural do site. São elas:
-
-- `_includes`: essa pasta possui todo código HTML necessário para criar toda parte estrutural do site. É necessário conhecimento de web e Jekyll para alterar algo aqui
-* `layouts`: nesta pasta são armazenadas os arquivos para criação dos Layouts do template. Só é necessários alterar algo aqui caso queira criar um layout novo, o que é muito raro
-* `_sass`: essa pasta contém os arquivos de configuração do SASS, que é uma evolução do CSS. Na pasta `_sass/minimal-mistakes` existe um arquivo chamado `_variables.scss` que guarda informações de cores, fontes, tamanhos, etc. Talvez, este seja o único arquivo que você possa ter interesse em alterar algo no futuro.
-
-Com já foi dito, é raro precisar alterar algo nessas pastas. Caso seja necessário alterar, talvez seja melhor consultar a [documentação do próprio Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/).
-
-### Alterando o menu do site e alterar tradução
-No topo do site existe um menu com algumas opções. Esse menu pode ser alterado no arquivo `_data/navigation.yml`. Neste arquivo, você pode alterar o que já existe ou criar um menu novo. Por exemplo, poderiamos criar um item novo no menu fazendo:
-
-```
-main:
-   - title: "Novo item no menu"
-     url: /novo-item-menu
+  - nome: "Projeto Integrado I"
+    curso: "Ciência da Computação"
+    descricao: "Sistemas Web, Apps, Games"
+    data: "28/08/2025"
+    hora: "10h às 12h"
+    local: "CT-XII - Sala de Extensão"
+    linkprojetos: "/eventos/PI-CC-20251"
 ```
 
-As tags são auto explicativas, você deve informar o título, que é o que aparece no menu, e a url para acessar quando ele for clicado. Sobre essa URL, vamos falor em breve.
+O identificador da mostra é sempre o ano seguido do número do semestre (1 ou 2). Dentro de cada mostra, você deve inserir as informações de cada curso que participou da mostra. Este arquivo contém todo o histórico de mostras já realizadas.
 
-Outra alteração que pode ser realizada dentro da pasta `_data` é no arquivo `ui-text.yml`. O Minimal Mistakes é utilizado é diversas línguas, incluido português (pt-BR). Pode acontecer de que alguma tradução não seja muito boa. Caso queira trocar, basta buscar ela neste arquivo e alterar.
+Observe também que existe o campo `linkprojetos`, que deve apontar para a página onde estão listados os projetos daquela mostra. A seguir, você verá como criar essa página.
 
-### Criando paǵinas estáticas
-As paǵinas do site estão disponibilizadas dentro da pasta `_pages`. Na verdade, elas poderiam estar em qualquer lugar (e você vai entender em breve). Porém, para organizar tudo em um mesmo local, elas se encontram nesta pasta.
+**Obs 1:** esse passo só deve ser realizado uma vez. Se a mostra já estiver criada, não é necessário fazer novamente. Basta inserir a nova disciplina no semestre corrente e seguir para o próximo passo.
 
-A única exceção a essa regra é a pagina principal, a `index.md`. Essa, fica na raíz do projeto e é necessário que assim seja pois é o ponto de partida para o site.
+**Obs 2:** o sistema considera a mostra mais recente a quele que estiver no topo do arquivo `mostra.yml`. Logo, a ordem das entradas importa. Isso afeta o que será exibido na `home` do site.
 
-Agora, precisamos entender um pouco mais de como funciona a criação de páginaas dentro do Jekyll.
+**Obs 3:** para alterar a chamada na `home` do site, você deve editar o arquivo `index.md` na raiz do repositório.
 
-## Funcionamento das páginas
-Todas as páginas dentro do Jekyll são cridas usando arquivos Markdown (extensão `.md`) ou HTML (extensão `.html`). Em qualquer uma das opções, é necessário criar um cabeçalho com as informações da página. Esse cabeçalho é a primeira coisa que vem no arquivo e é delimitado pelos caracteres `---`, por exemplo:
 
+## Como criar uma disciplina para a mostra
+
+Para criar uma nova disciplina com os projetos para a mostra é bem parecido com a criação da mostra. Você deve criar um novo arquivo `yml` dentro da pasta `_data/disciplinas/<nome-da-disciplina>`. Por exemplo, para PIC 1, já existe a pasta `pic1`, e dentro dela o arquivo `ec-20202.yml`, que contém os projetos da disciplina de Engenharia de Computação do semestre 2020/2.
+
+Dentro deste arquivo, você deve inserir as informações dos projetos conforme o exemplo abaixo:
+
+```yaml
+##############################################################
+# PIC 2 EC 2025/1
+##############################################################
+projetos:
+  - nome: "Teclado Didático"
+    autores: "Arthur Jacintho, Carlos Daniel Vieira, Daniel Sattler"
+    descricao: "Construção de um teclado simples com 12 teclas, 7 notas e 5 acidentes (sustenidos), com o objetivo de familiarizar qualquer um com a dinâmica básica de um teclado real e de ensinar a tocar algumas músicas nesse instrumento."
+    iframe: "https://www.youtube.com/embed/l5gIYVnVHKg?si=E4IBL_RmT0qYiAsf"
+    github: "https://github.com/paisdegales/PIC-2020-2"
+
+  - nome: "Braço Robótico Interativo"
+    autores: "Alexsander Barbosa Moura, Elder Ribeiro Storck, Guilherme Dayrell Cruz Soares e Jose Vitor Rodrigues Zorzal"
+    descricao: "Braço Robótico Interativo para Finalidade Educacional"
+    iframe: "https://www.youtube.com/embed/zgMKTRIESYY"
+    github: "https://github.com/alxsn/robotic_arm"
 ```
+
+Basicamente, só é necessário inserir o nome do projeto, os autores, uma breve descrição, o link para o vídeo de apresentação (iframe do Youtube) e o link para o repositório no Github. Se não existir repositório, basta deixar o campo `github` vazio ou removê-lo.
+
+## Como criar a página da disciplina
+Para criar a página da disciplina, você deve criar um novo arquivo `.md` dentro da pasta `_pages/disciplinas/<nome-da-disciplina>`. Por exemplo, para PIC 1, já existe a pasta `PIC1`, e dentro dela o arquivo `PIC1-EC-20202.md`, que contém a página da disciplina de Engenharia de Computação do semestre 2020/2.
+
+Dentro deste arquivo, você deve inserir o conteúdo da página conforme o exemplo abaixo:
+
+```markdown
 ---
- layout: single
- permalink: /sobre/
- title: "Sobre a Equipe"
- classes: wide
- author_profile: true
+layout: splash
+classes: wide
+permalink: /eventos/PIC1-EC-20202/
+title: "Projeto Integrado em Computação I"
 ---
+
+
+# Projeto Integrado em Computação II - 2025/1
+
+### Professor responsável
+ - Prof. Vinícius Mota
+
+### Links
+- [Fotos da mostra](https://photos.app.goo.gl/fdzUQ4dsQ6zkwr5G7)
+- [Playlist da mostra](https://www.youtube.com/playlist?list=PL-MuOHPQO5MBQ64NyYTcADtNkZ8mO-PXm)
+
+____
+
+
+# Projetos
+
+{% include projetos.html fileyml=site.data.disciplinas.pic1.ec20202 %}
 ```
 
-Esse cabeçalho basicamente avisa ao Jekyll que ali dentro será criado arquivos de configuração usando YAML. Essas configurações são definidas pelo template Minimal Mistakes e elas mudam como que a página será exibida no navegador. Na sequência, vamos passar pelo pontos mais importantes.
+No topo do arquivo, existe algumas configurações do Jekyll, que são necessárias para o correto funcionamento da página. Você só precisa alterar o `permalink` e o `title` para os valores corretos. No caso do `permalink`, ele deve ser igual ao valor do campo `linkprojetos` que você colocou no arquivo `mostra.yml`. O `title` deve ser o nome da disciplina.
 
-- `layout`: essa tag determina qual o layout do template essa página vai utilizar. Existem vários, por exemplo, `single`, `splash`, `post`, `tags`, etc. Na [documentação do template](https://mmistakes.github.io/minimal-mistakes/docs/layouts/) existe a descrição de cada um deles e um exemplo visual de como eles são exibidos.
-- 
-- `permalink`: define qual vai ser o link que vai aparecer no navegador para ser acessaro. No exemplo anterior é usado `/sobre/`. Neste caso, ele vai aparecer como `<URL_SITE>/sobre`. Essa URL do site vai depender da hospedagem dele (mas se ele já está funcionando, não se preocupe com isso). O que é importante aqui é que se você for usar essa página no menu, que foi descrito na seção anterior, você deve usar essa informação na tag `url`.
-  
-- `title`: é o título que vai aparecer na página
-  
-- `classes`: altera a maneira que o layout exibe a tela. Existem diversos atributos, como `wide`, `landing`, `dark-theme`, etc. Novamente, para mais informações, vá até a [documentação do template](https://mmistakes.github.io/minimal-mistakes/docs/layouts/).
-  
-- `author_profile`: se for `true` exibe uma caixa ao lado da página com informações do autor da página ou post. Normalmente é deixado como `false`.
-  
-- `toc`: é opcional, mas se for colocado como `true` cria um sumário, ou table of content, da página
-  
-- `taxonomy`: é opcional, mas se for utilizado define a taxonomia da página. Você pode encontrar mais informações sobre [nesta parte da documentação do template](https://mmistakes.github.io/minimal-mistakes/docs/layouts/#taxonomy-archives).
+Depois, você pode inserir o conteúdo que quiser na página. No exemplo acima, existe uma seção para o professor responsável e links relacionados à mostra. Você pode adicionar ou remover o que achar necessário.
 
-Essas são as configurações básicas de uma página. Após a delimitação `---`, você pode escrever a página usando Markdown de maneira habitual. Quando o Jekyll rodar, ele vai transformar tudo em HTML e preparar os arquivos necessários para criar o site. Porém, a gente não precisa se preocupar com isso, ele faz automaticamente. O que precisamos é apenas inserir o conteúdo nas páginas.
+Para aparecer os projetos da disciplina, você deve utilizar o include `projetos.html`, passando como parâmetro o arquivo `yml` que você criou na seção anterior. A partir disso, o Jekyll irá buscar os projetos dentro do arquivo e exibi-los na página.
 
-Outro ponto importante aqui é que essas páginas precisam ser linkadas no site para que o usuário acesse. Por exemplo, podemos criar um item no menu superior chamado Sobre e direcionar para a página `<URL_SITE>/sobre` utilizando a configuração de navegação que já foi descrita anteriormente. Se você não linkar, elas vão existir, mas só podem ser acessadas digitando a URL completa no navegador.
-
-## Criando posts para seção de blog e/ou notícias
-A criação de posts para o blog é realizada de maneira similar a criação de páginas estáticas. Porém, precisamos de algumas configurações extra.
-
-Primeiramente, para organizar o site, todos os posts são colocados dentro da pasta `_posts`. Também vamos usar arquivos em Markdown com a configuração em YAML no topo dele (como já descrito). Porém, agora vem a primeira diferença: precisamos criar o nome do arquivo seguindo o padrão `aaaa-mm-dd-nome-do-arquivo.md`. Esse padrão é obrigatório e ele é quem vai criar a organização dos posts no blog de acordo com a data que passamos no começo (que está no padrão `aaaa-mm-dd`).
-
-Dentro do arquivo, vamos usar as tags descritas anteriormente, exceto a `permlink`, uma vez que os posts são colocados automaticamente dentro do post. Neste caso, você não precisa disponibilizar o link para o usuário, ele já va aparecer pra ele na seção de posts pois o Jekyll já faz isso automaticamente.
-Outros atributos interessantes que podemos usar:
-
-- `header`
-  - `teaser`: podemos passar o caminho para uma imagem para que ela aparece em posts recomendados. Por exemplo, `/assets/imgs/posts/casa.png`, vai fazer com que essa imagem seja a imagem de chamada para o post.
-  
-  - `categories`: podemos criar categorias para o blog. Neste site, usamos `Blog` e `Wiki`. Logo, esse atributo fica:
-  
-  ```
-  categories:
-    - Blog
-  ```
-  
-  Esse nome criado (no caso `Blog`), é usado como taxonomia para criar uma página de `\blog` do site. Obviamente, pode ser alterado ou criado outras (ex: tutoriais).
-
-  - `tags`: podemos criar `tags` para os posts para que eles sejam organizados em grupos similares. Neste caso, podemos criar quantas forem necessárias. Por exemplo:
-  ```
-  tags:
-    - Artigo
-    - Python
-    - ROS
-    - VSS
-  ```
-       
-Uma vez feita as configurações, podemos escrever o post usando Markdown normalmente. Quando ele for criado, o Jekyll vai colocar junto ao outros posts do Blog organizados por data.
-
-**Dica**: sempre que for iniciar um novo post, copia e cola arquivo de post já criado e altere as informações que são necessárias.
-
-
-## Páginas especiais
-Além da `index.md`, existem outras páginas especiais que utilizamos. Elas estão dentro da pasta `_pages` e são listadas a seguir:
-
-* `404.md`: define uma página padrão para caso o usuário tente acessar um link que não existe (ex: `life.inf.ufes.br/asdasdasd`).
-* `arquivo.md`: cria uma página que arquiva todos os posts do blog de acordo com ano.
-* `noticias.md`: cria uma página que mostra os posts em ordem cronológica. Isso é feito usando `layout: category` e `taxonomy: Notícias`</code>. Por isso é importante incluir a `Notícias` em todos os posts que criamos pois é assim que o Jekyll sabe que é para colocar todos aqui.
-* `tags.md`: cria uma página que mostra os posts organizados por tags. Isso é feito usando `layout: tags`. O Jekyll vai pegar todas as tags que criamos nos posts e organizar nesta página automaticamente.
-
-## Incluindo imagens e outros arquivos
-Todos os arquivos do site (por exemplo, imagens, PDFs e similares) devem ser colocados dentro da pasta `assets`. Para acessar o arquivo dentro de uma página ou post, basta usar o caminho do mesmo. Por exemplo, `assets/imgs/profile.png`, que o logo da equipe que está sendo usado como perfil.
-
-Sempre que for usar uma imagem em um post, você pode criar uma pasta com o nome do post e incluir a imagem dentro dele.
-
-## Considerações finais
-Com este tutorial, e os links fornecidos nele, você já tem o que é necessário para realizar alterações no site do Life. É claro que no começo pode parecer um pouco obscuro, mas fazendo uma ou duas modificações, já ficará habitual.
-
-Por falar em modificações, uma vez finalizado as alterações, para publicá-las basta commitar o código para o repositório do mesmo que está na organização do Github do time. Se não houver erros, o site vai atualizar automaticamente (`wip`).
-
-# Como configurar o webhook
-
-Altere o arquivo de configuração do Git para permitir um pull dentro do container.
-
-```
-nano .git/config
-```
-E atualize:
-
-```
-url = https://<NOME_USUARIO>:<TOKEN></TOKEN>@github.com/life-ufes/site.git
-```

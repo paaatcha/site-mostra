@@ -69,6 +69,7 @@
     hora: "10h às 12h"
     local: "CT-XIII"
     linkprojetos: "/PIC2-EC-20242"
+
   - nome: "Projeto Integrado I"
     curso: "Ciência da Computação"
     descricao: "Sistemas Web, Apps, Games"
@@ -76,3 +77,15 @@
     hora: "10h às 12h"
     local: "CT-XIII"
     linkprojetos: "/PI-CC-20242"
+
+##############################################################
+# MOSTRA 2020-2
+##############################################################
+2020-2:
+  - nome: "Projeto Integrado de Computação I"
+    curso: "Engenharia de Computação"
+    descricao: "Integração de Hardware e Software"
+    data: "2020"
+    hora: "10h às 12h"
+    local: "CT-XIII"
+    linkprojetos: "/eventos/PIC1-EC-20202/"
