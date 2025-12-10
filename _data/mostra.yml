@@ -32,7 +32,7 @@
     data: "28/08/2025"
     hora: "10h às 12h"
     local: "CT-XII - Sala de Extensão"
-    linkprojetos: "/eventos/PI-CC-20251"
+    linkprojetos: "/eventos/PI1-CC-20251"
 
   - nome: "Introdução à Engenharia de Computação"
     curso: "Engenharia de Computação"
@@ -59,7 +59,7 @@
     descricao: "Integração Hardware e Software"
     data: "18/03/2025"    
     local: "Online"
-    linkprojetos: "/eventos/PIC-EC-20242/"
+    linkprojetos: "/eventos/PIC1-EC-20242/"
 
   - nome: "Projeto Integrado II"
     curso: "Ciência da Computação"
