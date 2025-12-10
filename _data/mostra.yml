@@ -100,7 +100,7 @@
     data: "25/07/2024"
     hora: "10h às 12h"
     local: "CT-XIII"
-    linkprojetos: "/eventos/PI-CC-20241"
+    linkprojetos: "/eventos/PI1-CC-20241"
 
 ##############################################################
 # MOSTRA 2023-2
@@ -112,7 +112,7 @@
     data: "14/12/2023"
     hora: "10h às 12h"
     local: "Labgrad 3 - CT IX"
-    linkprojetos: "/eventos/PIC-EC-20232/"
+    linkprojetos: "/eventos/PIC1-EC-20232/"
 
   - nome: "Projeto Integrado II"
     curso: "Ciência da Computação"
@@ -149,7 +149,7 @@
     data: "18/07/2023"
     hora: "15h às 17h"
     local: "Online"
-    linkprojetos: "/eventos/PI-CC-20231" 
+    linkprojetos: "/eventos/PI1-CC-20231" 
 
   - nome: "Introdução à Ciência da Computação"
     curso: "Ciência da Computação"
@@ -170,7 +170,7 @@
     data: "07/02/2023"
     hora: "9h às 12h"
     local: "CT XIII"
-    linkprojetos: "/eventos/PIC-EC-20222/"
+    linkprojetos: "/eventos/PIC1-EC-20222/"
 
   - nome: "Computação e Sociedade"
     curso: "Ciência da Computação"
@@ -207,7 +207,7 @@
     data: "18/08/2022"
     hora: "15h às 17h"
     local: "Online"
-    linkprojetos: "/eventos/PI-CC-20221" 
+    linkprojetos: "/eventos/PI1-CC-20221" 
 
   - nome: "Introdução à Ciência da Computação"
     curso: "Ciência da Computação"
@@ -227,7 +227,7 @@
     data: "22/03/2022"
     hora: "9h às 11h"
     local: "Online"
-    linkprojetos: "/eventos/PIC-EC-20212/"
+    linkprojetos: "/eventos/PIC1-EC-20212/"
 
   - nome: "Computação e Sociedade"
     curso: "Ciência da Computação"
@@ -255,7 +255,7 @@
     data: "07/10/2021"
     hora: "15h às 17h"
     local: "Online"
-    linkprojetos: "/eventos/PI-CC-20211"
+    linkprojetos: "/eventos/PI1-CC-20211"
 
   - nome: "Introdução à Ciência da Computação"
     curso: "Ciência da Computação"
