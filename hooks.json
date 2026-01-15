@@ -1,7 +1,0 @@
-[
-  {
-    "id": "redeploy-webhook",
-    "execute-command": "update-site.sh",
-    "command-working-directory": "/var/www/blog.erus.ufes.br/site"
-  }
-]
